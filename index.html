@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="WebTitle">简记 - 一个轻量型的笔记系统</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="./static/css/leftmenu.css">
+    <script src="./static/js/main.js"></script>
+</head>
+<body>
+    <!-- style="position:absolute; top: -200px;transition: top 1s;" -->
+    <div class="header" style="position:absolute; top: -200px;transition: top 1s;">
+        <div class="showtime" id="showtime">2023-3-15 16:48:53</div>
+        <!-- 展示登录信息 -->
+        <div class="userinfo" login onclick="showExMenu()" style="display:none;">
+            <div class="usericon">
+                <img id="usericon" src="" alt="usericon">
+            </div>
+            <label id="username" class="username"></label>
+        </div>
+        <!-- 登录额外菜单 -->
+        <div class="loginmune" hidden style="height: 0px;opacity: 0;">
+            <p><a href="javascript:void(0)" title="我的主页" onclick="">我的主页</a></p>
+            <p><a href="javascript:void(0)" title="设置" onclick="">设置</a></p>
+            <p><a href="javascript:void(0)" title="绑定其他账户" onclick="">绑定其他账户</a></p>
+            <p><a href="javascript:void(0)" title="你要走了嘛 T_T " onclick="">退出登录</a></p>
+
+        </div>
+
+        <!-- 未登录提示 -->
+        <div type="loginstatus" class="loginbar" nologin style="display: none;">
+            <p><a href="javascript:void(0)" title="试试登录吧 ~ " onclick="reqLogin()">登录</a></p>
+            <p><a href="javascript:void(0)" title="什么？你竟然还没有这个站点的账号?快来注册一个吧！" onclick="reqReg()">注册</a></p>
+        </div>
+    </div>
+
+    <div class="leftmenu" type="_hide" style="left: -336px;transition: left 1s;" onclick="hile()">
+        <div class="menushow" style="opacity: 1">
+            <div type="menu select">
+                <a href="javascript:void(0)" onclick="leftMenu(this,1)">测试</a>
+                <span>></span>
+            </div>
+            <div type="menu">
+                <a href="javascript:void(0)" onclick="leftMenu(this,2)">测试</a>
+                <span>></span>
+            </div>
+            <div type="menu">
+                <a href="javascript:void(0)" onclick="leftMenu(this,3)">测试</a>
+                <span>></span>
+            </div>
+            <div type="menu">
+                <a href="javascript:void(0)" onclick="leftMenu(this,4)">测试</a>
+                <span>></span>
+            </div>
+        </div>
+        <div class="hideleft" title="折叠侧边栏" onclick="hideLeft(this)">
+            <span><&emsp;&nbsp;折叠侧边栏</span>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        const headerEle = document.querySelector(".header")
+        headerEle.style.transition = "top 1s"
+        window.setTimeout(()=>{
+            headerEle.style.top = "0px"
+            window.setTimeout(()=>{
+                const leftMenu = document.querySelector(".leftmenu")
+                leftMenu.style.left = "0"
+            },380)
+            window.setTimeout(()=>{
+                headerEle.style.position = "sticky"
+            },1000)
+        },300)
+
+
+    </script>
+    <script src="./static/js/logincheck.js"></script>
+    <script src="./static/js/showtime.js"></script>
+</body>
+</html>

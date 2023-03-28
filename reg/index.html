@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简记 - 注册</title>
+    <link rel="stylesheet" href="../static/css/regpage.css">
+    <script src="../static/js/regpage_main.js"></script>
+</head>
+<body>
+    <center><h3 style="color:white">欢迎使用 简记 笔记系统</h3></center>
+    <div class="show">
+        <div class="card" type="name" hidden style="opacity: 0;z-index: -50;">
+            <p>请告诉我你是谁:</p>
+            <input type="text" id="name">
+            <div class="btnc">
+                <button onclick="save(1)">下一步</button>
+            </div>
+        </div>
+        
+        <div class="card" type="email" hidden style="opacity: 0;z-index: -50;">
+            <p><span id="inputName">XXX</span>,欢迎你的使用</p>
+            <p>请告诉我你的联系邮箱:</p>
+            <input type="email" id="email">
+            <div class="btnc">
+                <button onclick="save(2)">下一步</button>
+            </div>
+        </div>
+
+        <div class="card" type="emailVef" hidden style="opacity: 0; z-index: -50;">
+            <p>我们向你的邮箱发送了一封包含验证信息的邮件</p>
+            <p>请将验证信息填写在这里:</p>
+            <input type="text" id="emailVef">
+            <div class="btnc">
+                <button id="Vefnext" onclick="save(6)">下一步</button>
+                <button type="resendVef" style="margin-left: 20px" onclick="resendVef(this)">重新发送</button>
+            </div>
+            <div style="font-size: 7px;text-align: center; margin-top: 10px;">
+                <a href="javascript:void(0)" style="color: red" onclick="returnEmail()"><span>邮箱填写错误?点我重新填写</span></a>
+            </div>
+        </div>
+
+        <div class="card" type="Fpwd" hidden style="opacity: 0;z-index: -50;">
+            <p>你的账号即将创建完成</p>
+            <p>现在请设置一个好记又安全的密码:</p>
+            <input type="text" id="Fpwd">
+            <div class="btnc">
+                <button onclick="save(3)">下一步</button>
+            </div>
+        </div>
+
+        <div class="card" type="Spwd" hidden style="opacity: 0;z-index: -50">
+            <p>请确认你的密码:</p>
+            <input type="password" id="Spwd">
+            <div class="btnc">
+                <button onclick="save(4)">完成</button>
+                <button type="returnFpwd" style="margin-left: 20px;" onclick="returnFpwd()">重新设定</button>
+            </div>
+        </div>
+
+        
+    </div>
+    
+    <div class="showError">
+        <span id="errormsg">错误信息</span>
+    </div>
+
+    <script>
+        (
+            function(){
+                let ele = document.querySelector(".card[type='name']")
+                ele.hidden = false
+                window.setTimeout(()=>{
+                    ele.style.opacity = "1"
+                    ele.style.zIndex = "2"
+                },500)
+            }
+        )();
+
+    </script>
+
+</body>
+</html>

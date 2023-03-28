@@ -1,0 +1,108 @@
+body{
+    background-color: #444;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.show{
+    /* background-color: aqua; */
+    width: 85%;
+    height: auto;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.show>.card{
+    transition: opacity 500ms;
+}
+
+.show input{
+    border: none;
+    transition: border-radius 300ms,box-shadow 300ms;
+    border-radius: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 25px;
+    font-size: 20px;
+    outline: none;
+}
+
+.show input:hover{
+    box-shadow: 0px 0px 1px aqua,
+        0px 0px 3px aqua,
+        5px 5px 5px rgba(0,0,0,.5);
+}
+
+.show input:focus{
+    border-radius: 7px;
+    box-shadow: 0px 0px 1px aqua,
+        0px 0px 3px aqua,
+        5px 5px 5px rgba(0,0,0,.5);
+}
+
+.show .btnc{
+    display: flex;
+    /* background-color: aqua; */
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.show .btnc>button{
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    transition: background-color 150ms ease-in-out,
+        box-shadow 150ms;
+}
+
+.show .btnc>button:hover{
+    background-color: greenyellow;
+    box-shadow: 3px 3px 1px rgba(0,0,0,.5);
+}
+
+.show .btnc>button[type="resendVef"]:hover , .show .btnc>button[type="returnFpwd"]:hover{
+    background-color: yellow;
+    box-shadow: 3px 3px 1px rgba(0,0,0,.5);
+}
+
+.show .btnc>button[type="resendVef"]:disabled:hover{
+    background-color: red;
+    box-shadow: 3px 3px 1px rgba(0,0,0,.5);
+}
+
+
+.showError{
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: right 500ms;
+    height: 35px;
+    background-color: #777;
+    position: absolute;
+    right: -1000px;
+    top: 25px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+
+}
+
+input#emailVef{
+    width: 335px;
+}
+
+input#Fpwd{
+    width: 300px;
+    position: relative;
+}

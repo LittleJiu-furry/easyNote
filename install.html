@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简记 - 一个轻量型的笔记系统 - 安装程序</title>
+    <style>
+        body{
+            background-color: #444;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .getinfo{
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            border-radius: 5px;
+            justify-content: center;
+            background-color: aliceblue;
+            position: relative;
+            width: 300px;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .getinfo input{
+            position: absolute;
+            left: 120px;
+        }
+    </style>
+    <script>
+        function save(){
+            // 检查数据
+            const ele = document.querySelector("div#installData")
+            if(ele.host.value == "" || ele.host.value == undefined){
+                alert("请填写数据库地址！")
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <h1 style="color:white">欢迎使用简记笔记系统</h1>
+    <div class="getinfo" id="installData">
+        <p><label>数据库地址:</label><input type="text" id="host" name="host" value="localhost"></p>
+        <p><label>用户名:</label><input type="text" id="username" name="username" value="root"></p>
+        <p><label>密码:</label><input type="password" id="passwd" name="passwd"></p>
+        <p><label>数据库名:</label><input type="text" id="database" value="easynote" name="database"></p>
+        <p><label>端口:</label><input type="number" id="port" min="1" max="65535" value="3306" name="port"></p>
+        <p><label>数据表前缀:</label><input type="text" id="pre" name="pre" value="p_"></p>
+        <button onclick="save()">保存</button>
+        <input type="submit" value="" hidden id="submitFrom">
+    </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简记 - 一个轻量型的笔记系统 - 登录</title>
+    <link rel="stylesheet" href="../static/css/loginpage.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../static/js/jqurey-hashes.min.js"></script>
+    <script src="../static/js/des.js"></script>
+    <script src="../static/js/loginpage_main.js"></script>
+    <script src="../static/js/geticp.js"></script>
+</head>
+<body>
+    <div class="logincard" style="opacity: 0">
+        <h2>简记 欢迎登录</h2>
+        <div class="input_ctrl_back">
+            <label>账号: <span style="color:red;">*</span></label>
+            <input type="text" id="userAccount">
+        </div>
+        <br>
+        <div class="input_ctrl_back">
+            <label>密码: <span style="color:red;">*</span></label>
+            <input type="password" id="userPwd">
+        </div>
+        <div class="btn_ctrl">
+            <button onclick="loginAction()">登入</button>
+            <button onclick="regAction()">注册</button>
+        </div>
+        <div class="outh">
+            <p>使用以下合作账户登录</p>
+            <div class="loginimg">
+                <div class="qq" onclick="loginAsQQ()">
+                    <img src="../static/img/bt_blue_24X24.png" title="以QQ登入" alt="qq_connect">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="foot">
+        <span>powered by easyNote@狐小九Little_Jiu</span>
+        <span>&nbsp;&nbsp;&nbsp;</span>
+        <a href="https://beian.miit.gov.cn/" id="icpShow">备案号</a>
+    </div>
+    <script>
+        // (
+        //     function(){
+        //         const icpShow = document.querySelector("#icpShow")
+        //         geticp_info(icpShow)
+        //     }
+        // )()
+        window.setTimeout(() => {
+            document.querySelector(".logincard").style.opacity = "1"
+        }, 100);
+    </script>
+</body>
+</html>

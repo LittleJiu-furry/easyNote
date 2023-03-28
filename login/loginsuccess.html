@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成功登录 - 正在跳转</title>
+    <style>
+        body{
+            background-color: #444;
+        }
+    </style>
+    <script>
+        window.setInterval(()=>{
+            let showTime = document.querySelector("#time")
+            let now = showTime.getAttribute("i")
+            showTime.setAttribute("i",now-1)
+            showTime.innerHTML = now-1
+            if(now-1==0){
+                window.location.replace("/")
+            }
+        },1000)
+
+        function jump(){
+            window.location.replace("/")
+        }
+    </script>
+</head>
+<body>
+    <center><h1 style="color:white">登录成功</h1></center>
+    <hr width="200px">
+    <center><p><span id="time" i="3">3</span>s 后将会跳转到首页</p></center>
+    <center><p>如果长时间无响应，请<a href="javascript:void(0)" onclick="jump()">点击这里</a></p></center>
+</body>
+</html>
