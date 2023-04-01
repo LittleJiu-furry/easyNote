@@ -7,10 +7,15 @@
     <title id="WebTitle">简记 - 一个轻量型的笔记系统</title>
     <link rel="stylesheet" href="./static/css/style.css">
     <link rel="stylesheet" href="./static/css/leftmenu.css">
+    <link rel="stylesheet" href="./static/css/textbody.css">
+    <!-- <link rel="stylesheet" href="./static/src/simplemde.min.css"> -->
+    <script src="./static/js/jquery.min.js"></script>
     <script src="./static/js/main.js"></script>
+    <script src="./static/js/showdown.min.js"></script>
+    
 </head>
 <body>
-    <!-- style="position:absolute; top: -200px;transition: top 1s;" -->
+    <!--  -->
     <div class="header" style="position:absolute; top: -200px;transition: top 1s;">
         <div class="showtime" id="showtime">2023-3-15 16:48:53</div>
         <!-- 展示登录信息 -->
@@ -36,7 +41,8 @@
         </div>
     </div>
 
-    <div class="leftmenu" type="_hide" style="left: -336px;transition: left 1s;" onclick="hile()">
+    <!--  -->
+    <div class="leftmenu" type="_hide"  onclick="hile()" style="left: -336px;transition: left 1s;">
         <div class="menushow" style="opacity: 1">
             <div type="menu select">
                 <a href="javascript:void(0)" onclick="leftMenu(this,1)">测试</a>
@@ -58,8 +64,30 @@
         <div class="hideleft" title="折叠侧边栏" onclick="hideLeft(this)">
             <span><&emsp;&nbsp;折叠侧边栏</span>
         </div>
+
     </div>
 
+    <!-- md编辑器 -->
+    <div class="textbody" style="opacity: 0;">
+        <div class="toolbar">
+            <a href="javascript:void(0)" title="倾斜" class="toolbar_select" onclick="saveSelectionText()"><img src="./static/svg/text_in.svg"></a>
+            <a href="javascript:void(0)" title="下划线"><img src="./static/svg/text_underline.svg"></a>
+            <a href="javascript:void(0)" title="加粗"><img src="./static/svg/text_bold.svg"></a>
+            <a href="javascript:void(0)" title="删除线"><img src="./static/svg/text_delline.svg"></a>
+            <span>&nbsp;|&nbsp; </span>
+            <a href="javascript:void(0)" title="撤销"><img src="./static/svg/text_return.svg"></a>
+            <a href="javascript:void(0)" title="恢复"><img src="./static/svg/text_recover.svg"></a>
+            <span>&nbsp;|&nbsp; </span>
+            <a href="javascript:void(0)" title="删除线"><img src="./static/svg/text_delline.svg"></a>
+
+        </div>
+        <div class="eidback" id="editordiv" contenteditable>
+            
+        </div>
+        <div class="show" style="position:absolute;height: 350px;width: 350px;background-color: rgba(255,255,255,.5);">
+            
+        </div>
+    </div>
 
 
 
@@ -72,15 +100,20 @@
             window.setTimeout(()=>{
                 const leftMenu = document.querySelector(".leftmenu")
                 leftMenu.style.left = "0"
+                window.setTimeout(() => {
+                    document.querySelector(".textbody").style.opacity = 1
+                }, 450);
             },380)
             window.setTimeout(()=>{
                 headerEle.style.position = "sticky"
             },1000)
         },300)
 
-
     </script>
     <script src="./static/js/logincheck.js"></script>
     <script src="./static/js/showtime.js"></script>
+    <!-- <script src="./static/src/js/codemirror/tablist.js"></script> -->
+    <!-- <script src="./static/src/simplemde.min.js"></script> -->
+    <script src="./static/js/use.editor.js"></script>
 </body>
 </html>

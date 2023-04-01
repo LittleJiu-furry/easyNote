@@ -6,7 +6,6 @@
     left: 0;
     bottom: 0;
     box-shadow: 7px 0px 7px rgba(0,0,0,.35);
-
     color: white;
     text-shadow: 0px 0px 1px white,
         0px 0px 2px white;
@@ -14,6 +13,7 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     line-height: 1.3em;
+    z-index: 20;
 }
 
 .leftmenu div[type~="menu"]{
@@ -23,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 150ms,box-shadow 150ms;
+    transition: background-color 150ms,box-shadow 300ms;
 }
 
 .leftmenu div[type~="menu"]>a{

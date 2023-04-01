@@ -39,6 +39,7 @@ function hideLeft(){
         document.querySelector(".leftmenu>.menushow").style.opacity = 0
         window.setTimeout(()=>{
             left_ele.style.left = "-150px"
+            document.querySelector(".textbody").style.width = "calc(100% - 18px)"
             left_ele.setAttribute("type","hide")
             me.title = "展开侧边栏"
         },300)
@@ -46,6 +47,7 @@ function hideLeft(){
     else if(left_ele.getAttribute("type") == "hide"){
         // 隐藏了
         left_ele.style.left = "0"
+        document.querySelector(".textbody").style.width = "calc(100% - 168px)"
         window.setTimeout(()=>{
             document.querySelector(".leftmenu>.menushow").style.opacity = 1
             left_ele.setAttribute("type","_hide")
@@ -59,4 +61,11 @@ function hile(){
     if(left_ele.getAttribute("type") == "hide"){
         hideLeft()
     }
+}
+
+
+//保存选中内容
+function saveSelectionText(){
+    const contentDiv = document.querySelector("#editordiv")
+    
 }

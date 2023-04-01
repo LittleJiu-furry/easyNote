@@ -1,0 +1,81 @@
+.textbody{
+    width: calc(100% - 168px);
+    height: calc(100% - 40px);
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    transition: width 1s,opacity 500ms;
+    /* background-color: red; */
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.textbody>.eidback{
+    width: 100%;
+    height: calc(100% - 35px);
+}
+
+#editordiv{
+    background-color: rgba(255,255,255,.3);
+    padding: 2px 5px 2px 5px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+    font-family: '微软雅黑';
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 0px 0px 7px 7px;
+    font-size: 16px;
+    transition: height 300ms;
+}
+
+.textbody>.toolbar{
+    display: flex;
+    height: 30px;
+    align-items: center;
+    transition: height 300ms,opacity 300ms;
+}
+
+.textbody>.toolbar>a{
+    margin-left: 5px;
+    height: 22px;
+    width: 22px;
+    overflow: hidden;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.textbody>.toolbar>a>img{
+    height: 85%;
+}
+
+#editordiv::-webkit-scrollbar{
+    width: 7px;
+}
+
+#editordiv::-webkit-scrollbar-track{
+    box-sizing: border-box;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#editordiv::-webkit-scrollbar-thumb{
+    background-color: gold;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+.textbody>.toolbar>a.toolbar_select{
+    background-color: grey;
+}
+
+.textbody>.toolbar span{
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
