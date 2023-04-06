@@ -1,0 +1,60 @@
+/* 预览区样式 */
+.pre{
+    width: 50%;
+    border-radius: 7px;
+    /* background-color: aqua; */
+    height: calc(100% - 35px);
+    position: absolute;
+    right: 0px;
+    top: 30px;
+    background-color: rgba(255,255,255,.5);
+    box-sizing: border-box;
+    padding: 5px;
+    transition: width 1s;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+/* 修改预览区的滚动条样式 */
+.pre::-webkit-scrollbar{
+    width: 7px;
+}
+
+.pre::-webkit-scrollbar-track{
+    box-sizing: border-box;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.pre::-webkit-scrollbar-thumb{
+    background-color: gold;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+/* 表格样式 */
+.pre table{ 
+    border: none;
+    border-collapse: collapse;
+}
+
+.pre table thead{
+    border-bottom: 2px solid black;
+}
+
+.pre table tbody tr:nth-child(even){
+    background-color: grey;
+}
+
+.pre table tbody tr td{
+    min-width: 75px;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.pre pre{
+    background-color: #555;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    width: max-content;
+}

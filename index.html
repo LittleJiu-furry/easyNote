@@ -8,16 +8,22 @@
     <link rel="stylesheet" href="./static/css/style.css">
     <link rel="stylesheet" href="./static/css/leftmenu.css">
     <link rel="stylesheet" href="./static/css/textbody.css">
+    <link rel="stylesheet" href="./static/css/markdown_editor.css">
     <!-- <link rel="stylesheet" href="./static/src/simplemde.min.css"> -->
     <script src="./static/js/jquery.min.js"></script>
     <script src="./static/js/main.js"></script>
+    <!-- <script src="./static/js/markdown_editor.js"></script> -->
     <script src="./static/js/showdown.min.js"></script>
+    <script src="./static/js/img2server.js"></script>
     
 </head>
 <body>
-    <!--  -->
+    <!-- 头部状态栏 -->
     <div class="header" style="position:absolute; top: -200px;transition: top 1s;">
         <div class="showtime" id="showtime">2023-3-15 16:48:53</div>
+        <div class="searchinput" style="display: none">
+            <input type="text">
+        </div>
         <!-- 展示登录信息 -->
         <div class="userinfo" login onclick="showExMenu()" style="display:none;">
             <div class="usericon">
@@ -41,25 +47,53 @@
         </div>
     </div>
 
-    <!--  -->
+    <!-- 侧边栏 元素右键菜单 -->
+    <div class="leftmenuLayout" hidden style="height: 0;width: 0;">
+        <div class="item" type="delete" data-i="1" onclick="layoutCheck(event,this,1)">
+            <img src="./static/svg/Layout_del.svg">
+            <span>删除</span>
+        </div>
+
+        <div class="item" type="close" onclick="layoutCheck(event,this,2)">
+            <img src="./static/svg/Layout_close.svg">
+            <span>关闭菜单</span>
+        </div>
+    </div>
+    <!-- 侧边功能栏 -->
     <div class="leftmenu" type="_hide"  onclick="hile()" style="left: -336px;transition: left 1s;">
         <div class="menushow" style="opacity: 1">
-            <div type="menu select">
-                <a href="javascript:void(0)" onclick="leftMenu(this,1)">测试</a>
+            <div class="addbtn">
+                +
+            </div>
+            <div data-id="utext-m85741" type="menu select" oncontextmenu="rightMenu(event,this)">
+                <div onclick="leftMenu(this,1)">
+                    <span id="title">测试标题</span>
+                    <div>
+                        测试小内容测试小内容测试小内容测试小内容
+                    </div>
+                </div>
                 <span>></span>
             </div>
-            <div type="menu">
-                <a href="javascript:void(0)" onclick="leftMenu(this,2)">测试</a>
+            <div data-id="utext-m85741" type="menu" oncontextmenu="rightMenu(event,this)">
+                <div onclick="leftMenu(this,1)">
+                    <span id="title">测试标题</span>
+                    <div>
+                        测试小内容测试小内容测试小内容测试小内容
+                    </div>
+                </div>
                 <span>></span>
             </div>
-            <div type="menu">
-                <a href="javascript:void(0)" onclick="leftMenu(this,3)">测试</a>
+            <div data-id="utext-m85741" type="menu" oncontextmenu="rightMenu(event,this)">
+                <div onclick="leftMenu(this,1)">
+                    <span id="title">测试标题</span>
+                    <div>
+                        测试小内容测试小内容测试小内容测试小内容
+                    </div>
+                </div>
                 <span>></span>
             </div>
-            <div type="menu">
-                <a href="javascript:void(0)" onclick="leftMenu(this,4)">测试</a>
-                <span>></span>
-            </div>
+            
+            
         </div>
         <div class="hideleft" title="折叠侧边栏" onclick="hideLeft(this)">
             <span><&emsp;&nbsp;折叠侧边栏</span>
@@ -67,28 +101,34 @@
 
     </div>
 
-    <!-- md编辑器 -->
-    <div class="textbody" style="opacity: 0;">
-        <div class="toolbar">
-            <a href="javascript:void(0)" title="倾斜" class="toolbar_select" onclick="saveSelectionText()"><img src="./static/svg/text_in.svg"></a>
-            <a href="javascript:void(0)" title="下划线"><img src="./static/svg/text_underline.svg"></a>
-            <a href="javascript:void(0)" title="加粗"><img src="./static/svg/text_bold.svg"></a>
-            <a href="javascript:void(0)" title="删除线"><img src="./static/svg/text_delline.svg"></a>
-            <span>&nbsp;|&nbsp; </span>
-            <a href="javascript:void(0)" title="撤销"><img src="./static/svg/text_return.svg"></a>
-            <a href="javascript:void(0)" title="恢复"><img src="./static/svg/text_recover.svg"></a>
-            <span>&nbsp;|&nbsp; </span>
-            <a href="javascript:void(0)" title="删除线"><img src="./static/svg/text_delline.svg"></a>
+    <div id="ediout" style="opacity: 0;">
+        <!-- md编辑器 -->
+        <div class="textbody" id="editor">
+            <div class="toolbar" type="editStatus" style="display: none;">
+                <a href="javascript:void(0)" title="关闭预览" onclick="toolbar_click(5,this)"><img src="./static/svg/text_hideAc.svg"></a>
+                <a href="javascript:void(0)" title="上传图片" onclick="toolbar_click(1,this)"><input type="file" id="uploadFile" hidden onchange="upFile(event)"><img src="./static/svg/text_upload.svg"></a>
+                <span>&nbsp;|&nbsp; </span>
+                <a href="javascript:void(0)" title="撤销" onclick="toolbar_click(2,this)"><img src="./static/svg/text_return.svg"></a>
+                <a href="javascript:void(0)" title="恢复" onclick="toolbar_click(3,this)"><img src="./static/svg/text_recover.svg"></a>
+                <span>&nbsp;|&nbsp; </span>
+                <a href="javascript:void(0)" title="保存" onclick="toolbar_click(4,this)"><img src="./static/svg/text_saved.svg"></a>
+                <a href="javascript:void(0)" title="保存并退出编辑" onclick="toolbar_click(7,this)"><img src="./static/svg/Layout_close.svg"></a>
+                <div class="tips">总字数:<span id="totalLetter">0</span></div>
+            </div>
+            <div class="toolbar" type="no_editStatus" hidden>
+                <a href="javascript:void(0)" title="编辑" onclick="toolbar_click(6,this)"><img src="./static/svg/text_edit.svg"></a>
+            </div>
+            <!-- markdown预览区 -->
+            <div class="pre" id="showmd" style="width: 100%;"></div>
+            <div class="eidback" hidden style="width:100%;">
+                <div id="editordiv" contenteditable></div>
+            </div>
+        </div>
 
-        </div>
-        <div class="eidback" id="editordiv" contenteditable>
-            
-        </div>
-        <div class="show" style="position:absolute;height: 350px;width: 350px;background-color: rgba(255,255,255,.5);">
-            
-        </div>
+
+        
     </div>
-
+    
 
 
 
@@ -101,7 +141,7 @@
                 const leftMenu = document.querySelector(".leftmenu")
                 leftMenu.style.left = "0"
                 window.setTimeout(() => {
-                    document.querySelector(".textbody").style.opacity = 1
+                    document.querySelector("#ediout").style.opacity = 1
                 }, 450);
             },380)
             window.setTimeout(()=>{

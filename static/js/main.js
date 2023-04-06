@@ -26,9 +26,25 @@ function reqReg(){
 }
 
 function leftMenu(obj,type){
+    // 配置样式
     const se_ele = document.querySelector("div[type='menu select']")
+    if(se_ele == obj.parentElement){
+        // 点击了自己，不进行操作
+        return ;
+    }
     se_ele.setAttribute("type","menu")
     obj.parentElement.setAttribute("type","menu select")
+    // 重新进入未编辑状态
+    document.querySelector(".toolbar[type='editStatus']").style.display = "none"
+    document.querySelector(".toolbar[type='no_editStatus']").style = ""
+    document.querySelector(".pre").hidden = false
+    window.setTimeout(()=>{
+        document.querySelector(".pre").style.width = "100%"
+    },10)
+    document.querySelector(".eidback").style.width = "0"
+    window.setTimeout(()=>{
+        document.querySelector(".eidback").hidden = true
+    },1000)
 }
 
 function hideLeft(){
@@ -40,6 +56,7 @@ function hideLeft(){
         window.setTimeout(()=>{
             left_ele.style.left = "-150px"
             document.querySelector(".textbody").style.width = "calc(100% - 18px)"
+            const prev = document.querySelector("#showmd")
             left_ele.setAttribute("type","hide")
             me.title = "展开侧边栏"
         },300)
@@ -48,6 +65,7 @@ function hideLeft(){
         // 隐藏了
         left_ele.style.left = "0"
         document.querySelector(".textbody").style.width = "calc(100% - 168px)"
+        const prev = document.querySelector("#showmd")
         window.setTimeout(()=>{
             document.querySelector(".leftmenu>.menushow").style.opacity = 1
             left_ele.setAttribute("type","_hide")
@@ -67,5 +85,5 @@ function hile(){
 //保存选中内容
 function saveSelectionText(){
     const contentDiv = document.querySelector("#editordiv")
-    
 }
+

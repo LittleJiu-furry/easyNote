@@ -18,19 +18,38 @@
 
 .leftmenu div[type~="menu"]{
     /* background-color: aqua; */
-    height: 40px;
+    height: 60px;
     width: calc(100% - 5px);
+    overflow: hidden;
     display: flex;
     justify-content: center;
-    align-items: center;
     transition: background-color 150ms,box-shadow 300ms;
+    margin-bottom: 5px;
 }
 
-.leftmenu div[type~="menu"]>a{
+.leftmenu div[type~="menu"]:nth-child(odd){
+    background-color:rgba(0,0,0,.35);
+}
+
+.leftmenu div[type~="menu"]:nth-child(even){
+    background-color:rgba(255,255,255,.35);
+}
+
+.leftmenu div[type~="menu"]>div{
     /* background-color: red; */
-    width: calc(100% - 40px);
-    height: 40px;
-    line-height: 40px;
+    width: calc(100% - 25px);
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+    /* line-height: 40px; */
+}
+
+.leftmenu div[type~="menu"]>div>div{
+    font-size: 5px;
+}
+
+.leftmenu div[type~="menu"]>div>span{
+    font-size: 13px;
 }
 
 .leftmenu div[type~="menu"]:hover{
@@ -93,3 +112,52 @@
     background-color: #666;
 }
 
+.leftmenuLayout{
+    width: auto;
+    height: auto;
+    padding: 3px 0px;
+    background-color: #555;
+    position: absolute;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: 100%;
+    overflow-y: auto;
+    max-height: 780px;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgba(0,0,0,.35);
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.leftmenuLayout>.item{
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 5px;
+    transition: background-color 150ms;
+    border-radius: 3px;
+}
+
+.leftmenuLayout img{
+    height: 20px;
+}
+
+
+.leftmenuLayout>.item>span{
+    min-width: 70px;
+    text-align: right;
+    margin-left: 7px;
+}
+
+.leftmenuLayout>.item + .item{
+    margin-top: 5px;
+}
+
+.leftmenuLayout>.item:hover{
+    background-color: aquamarine;
+}
+
+.leftmenuLayout>.item[type="delete"]:hover{
+    background-color: rgba(255, 31, 57, 0.5);
+}

@@ -12,15 +12,15 @@ function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0) {
     $keyb = md5(substr($key, 16, 16));  
     // 密匙c用于变化生成的密文  
     $keyc = $ckey_length ? ($operation == 'DECODE' ? substr($string, 0, $ckey_length):
-substr(md5(microtime()), -$ckey_length)) : '';  
+    substr(md5(microtime()), -$ckey_length)) : '';  
     // 参与运算的密匙  
     $cryptkey = $keya.md5($keya.$keyc);  
     $key_length = strlen($cryptkey);  
     // 明文，前10位用来保存时间戳，解密时验证数据有效性，10到26位用来保存$keyb(密匙b)，
-//解密时会通过这个密匙验证数据完整性  
+    //解密时会通过这个密匙验证数据完整性  
     // 如果是解码的话，会从第$ckey_length位开始，因为密文前$ckey_length位保存 动态密匙，以保证解密正确  
     $string = $operation == 'DECODE' ? base64_decode(substr($string, $ckey_length)) : 
-sprintf('%010d', $expiry ? $expiry + time() : 0).substr(md5($string.$keyb), 0, 16).$string;  
+    sprintf('%010d', $expiry ? $expiry + time() : 0).substr(md5($string.$keyb), 0, 16).$string;  
     $string_length = strlen($string);  
     $result = '';  
     $box = range(0, 255);  
@@ -49,7 +49,7 @@ sprintf('%010d', $expiry ? $expiry + time() : 0).substr(md5($string.$keyb), 0, 1
     if($operation == 'DECODE') { 
         // 验证数据有效性，请看未加密明文的格式  
         if((substr($result, 0, 10) == 0 || substr($result, 0, 10) - time() > 0) && 
-substr($result, 10, 16) == substr(md5(substr($result, 26).$keyb), 0, 16)) {  
+            substr($result, 10, 16) == substr(md5(substr($result, 26).$keyb), 0, 16)) {  
             return substr($result, 26);  
         } else {  
             return '';  

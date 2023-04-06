@@ -1,0 +1,41 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>通过filereader接口读取文件</title>
+    <script type="text/javascript">
+        function readAsDataURL()
+        {
+            if(typeof FileReader=='undifined')          //判断浏览器是否支持filereader
+            {
+                result.innerHTML="<p>抱歉，你的浏览器不支持 FileReader</p>";
+                return false;
+            }
+            var file=document.getElementById("imagefile").files[0];
+            if(!/image\/\w+/.test(file.type))           //判断获取的是否为图片文件
+            {
+                alert("请确保文件为图像文件");
+                return false;
+            }
+            var reader=new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload=function(e)
+            {
+                var result=document.getElementById("result");
+                result.innerHTML='<img src="'+this.result+'" alt=""/>'
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+<p>
+    <label>请选择一个文件：</label>
+    <input type="file" id="imagefile" />
+    <input type="button" value="读取图像" onClick="readAsDataURL();" />
+</p>
+<div name="result" id="result">
+    <!-- 这里用来显示图片结果-->
+</div>
+</body>
+</html>
