@@ -65,5 +65,5 @@ PHP将会做为最为纯后端来编写API,API文档将会托管到主站点
 |uid|int|用户索引id，设置主键，并设置接受来自p_user的外键约束|
 |user_exaccount|longtext|用于存储用户的第三方账号信息|
 |user_icon|longtext|用户头像|
-|user_note|int|用户笔记记录区索引|
+|user_note|longtext|用户笔记记录区索引|
 

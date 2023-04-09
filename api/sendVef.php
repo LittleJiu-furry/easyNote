@@ -1,8 +1,8 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 // 请求服务器静态配置文件
 include_once("./conn/conf.php");
-require("./PHPMailer.use.php");
+require("./socketmail/client.php");
 
 // GET方法，需要获得GET参数
 $emailAdd = $_GET["email"];
@@ -24,8 +24,8 @@ $emailBody = '<html>
 </body>
 </html>';
 
-$em = new emUse($_conf["SMTP_host"],$_conf["SMTP_Auth"],$_conf["SMTP_username"],$_conf["SMTP_PWD"],$_conf["SMTP_port"]);
-$em->send_mail($_conf["SMTP_fromAddress"],$_conf["SMTP_fromName"],$emailAdd,$emailBody); // 发送邮件验证
+$em = new SocketMail($_conf["SMTP_host"],$_conf["SMTP_port"],$_conf["SMTP_username"],$_conf["SMTP_PWD"]);
+$em->send_mail($emailAdd,"[测试验证]",$emailBody);
 
 
 function getVef(){

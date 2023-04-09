@@ -7,4 +7,4 @@ $passwd = "";
 $database = "";
 $port = 3306;
 $pre = "p_"; // 数据表前缀
-?>
+?> 
