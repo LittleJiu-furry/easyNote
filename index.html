@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="./static/css/leftmenu.css">
     <link rel="stylesheet" href="./static/css/textbody.css">
     <link rel="stylesheet" href="./static/css/markdown_editor.css">
-    <!-- <link rel="stylesheet" href="./static/src/simplemde.min.css"> -->
     <script src="./static/js/jquery.min.js"></script>
+    <script src="./static/js/jqurey-hashes.min.js"></script>
     <script src="./static/js/main.js"></script>
-    <!-- <script src="./static/js/markdown_editor.js"></script> -->
+    <script src="./static/exjs/showdown-toc.js"></script>
     <script src="./static/js/showdown.min.js"></script>
     <script src="./static/js/img2server.js"></script>
+    
     
 </head>
 <body>
@@ -62,11 +63,11 @@
     <!-- 侧边功能栏 -->
     <div class="leftmenu" type="_hide"  onclick="hile()" style="left: -336px;transition: left 1s;">
         <div class="menushow" style="opacity: 1">
-            <div class="addbtn">
+            <div class="addbtn" onclick="addNewNote()">
                 +
             </div>
             <div data-id="utext-m85741" type="menu select" oncontextmenu="rightMenu(event,this)">
-                <div onclick="leftMenu(this,1)">
+                <div id="m85741" onclick="leftMenu(this,1)">
                     <span id="title">测试标题</span>
                     <div>
                         测试小内容测试小内容测试小内容测试小内容
@@ -100,7 +101,16 @@
         </div>
 
     </div>
-
+    <div class="about_back showabout" hidden>
+        <div class="text_about">
+            <a href="javascript:void(0)" title="关闭" id="about_close" onclick="closeAbout()">x</a>
+            <span><strong>简记 - markdown富文本编辑器</strong></span>
+            <span>version: 1.0</span>
+            <span>作者: 狐小九Little_Jiu</span>
+            <span>感谢使用简记</span>
+        </div>
+    </div>
+    
     <div id="ediout" style="opacity: 0;">
         <!-- md编辑器 -->
         <div class="textbody" id="editor">
@@ -113,20 +123,19 @@
                 <span>&nbsp;|&nbsp; </span>
                 <a href="javascript:void(0)" title="保存" onclick="toolbar_click(4,this)"><img src="./static/svg/text_saved.svg"></a>
                 <a href="javascript:void(0)" title="保存并退出编辑" onclick="toolbar_click(7,this)"><img src="./static/svg/Layout_close.svg"></a>
+                <span>&nbsp;|&nbsp;</span>
+                <a href="javascript:void(0)" title="关于" onclick="toolbar_click(8,this)"><img src="./static/svg/text_aboutme.svg"></a>
                 <div class="tips">总字数:<span id="totalLetter">0</span></div>
             </div>
             <div class="toolbar" type="no_editStatus" hidden>
-                <a href="javascript:void(0)" title="编辑" onclick="toolbar_click(6,this)"><img src="./static/svg/text_edit.svg"></a>
+                <a href="javascript:void(0)" id="editStatusBtn" title="编辑" onclick="toolbar_click(6,this)"><img src="./static/svg/text_edit.svg"></a>
             </div>
             <!-- markdown预览区 -->
             <div class="pre" id="showmd" style="width: 100%;"></div>
             <div class="eidback" hidden style="width:100%;">
-                <div id="editordiv" contenteditable></div>
+                <div id="editordiv" contenteditable placeholder="markdown"></div>
             </div>
         </div>
-
-
-        
     </div>
     
 
@@ -152,8 +161,6 @@
     </script>
     <script src="./static/js/logincheck.js"></script>
     <script src="./static/js/showtime.js"></script>
-    <!-- <script src="./static/src/js/codemirror/tablist.js"></script> -->
-    <!-- <script src="./static/src/simplemde.min.js"></script> -->
     <script src="./static/js/use.editor.js"></script>
 </body>
 </html>

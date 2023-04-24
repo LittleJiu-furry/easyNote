@@ -1,5 +1,0 @@
-Apr 09 13:12:31 Little_Jiu[20080]: Trying to Connect smtp.qq.com:465...
-Apr 09 13:13:02 Little_Jiu[20080]: Error: Remote host returned ""
-Apr 09 13:13:02 Little_Jiu[20080]: Error: connenct error (0)
-Apr 09 13:13:02 Little_Jiu[20080]: Error: Cannot send email to random@random
-Apr 09 13:13:02 Little_Jiu[20080]: Array send over;

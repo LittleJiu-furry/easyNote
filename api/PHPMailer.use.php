@@ -18,22 +18,24 @@ class emUse{
         $uem = $this->em;
 
         // 配置服务器
-        $uem->SMTPDebug = SMTP::DEBUG_SERVER;
+        $uem->SMTPDebug = 0;
         $uem->isSMTP();
         $uem->Host = $smtpHost; // 设置发信服务器
         $uem->SMTPAuth = $smtpAuth; // 设置SMTP认证
         $uem->Username = $smtp_username; // 设置发信邮件
         $uem->Password = $smtp_pwd; // 用户密码
-        $uem->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $uem->SMTPSecure = "ssl";
         $uem->Port = $smtp_port; // 设置端口
     }
 
-    function send_mail($from_address,$from_name,$to_address,$sendBody){
+    function send_mail($from_address,$from_name,$to_address,$sendSub,$sendBody){
         $uem = $this->em;
         $uem->setFrom($from_address,$from_name);
         $uem->addAddress($to_address);
         $uem->isHTML(true);
+        $uem->Subject = $sendSub;
         $uem->Body = $sendBody;
+        $uem->AltBody = "当前客户端不支持HTML,请尝试其他客户端或者邮箱";
         return $uem->send();
     }
 }

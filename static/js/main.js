@@ -87,3 +87,45 @@ function saveSelectionText(){
     const contentDiv = document.querySelector("#editordiv")
 }
 
+function newNoteID(){
+    let t = new Date().getTime()
+    let md5 = new Hashes.MD5
+    return md5.hex(t + "utext_easynote_" + Math.random()).substr(0,6)
+}
+
+
+function addNewNote(){
+    const newNoteNode = document.createElement("div");
+    let noteID = newNoteID()
+    newNoteNode.dataset["id"] = "utext-" + noteID;
+    newNoteNode.setAttribute("type","menu");
+    newNoteNode.oncontextmenu = (ev)=>{
+        rightMenu(ev,this)
+    }
+    newNoteNode.innerHTML = '\
+        <div onclick="leftMenu(this,1)">\
+            <span id="title">新的笔记</span>\
+            <div>\
+            </div>\
+        </div>\
+        <span>></span>\
+    ';
+    document.querySelector(".leftmenu>.menushow").appendChild(newNoteNode);
+    window.setTimeout(()=>{
+        const se_ele = document.querySelector("div[type='menu select']")
+        se_ele.setAttribute("type","menu")
+        newNoteNode.setAttribute("type","menu select")
+        document.querySelector("#editStatusBtn").click()
+    },30)
+    
+
+    
+    
+}
+
+function closeAbout(){
+    const AboutBack =  document.querySelector(".about_back")
+    AboutBack.style.zIndex = "-50"
+    AboutBack.hidden = true
+}
+

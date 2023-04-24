@@ -124,7 +124,7 @@ function save(i){
                 }
                 else{
                     // 为login页面设置cookie
-                    document.cookie = "_input_em=" + temp.email+"; path=/login/;"
+                    document.cookie = "_input_em=" + temp.email+"; path=/login;"
                     // 提交数据至服务器，由服务器完成保存工作
                     let http = new XMLHttpRequest()
                     http.open("POST","/api/saveUser.php")

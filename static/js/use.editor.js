@@ -4,6 +4,7 @@ var perviewElement = "" // 预览显示元素
 // md解析配置
 converter.setOption("tables",true) // 表格解析
 converter.setOption("smoothLivePreview",true) // 平滑预览
+converter.setOption("simplifiedAutoLink",true)
 
 
 // jQuery 支持 监听输入以及内容改变
@@ -80,7 +81,11 @@ function toolbar_click(type,obj){
                 document.querySelector(".eidback").hidden = true
             },1000)
             break
-
+        case 8:
+            // 关于编辑器
+            const AboutBack =  document.querySelector(".about_back")
+            AboutBack.style.zIndex = "5"
+            AboutBack.hidden = false
 
             
     }
@@ -132,6 +137,12 @@ function rightMenu(e,obj){
     menu.style.left=e.clientX+'px';
     menu.style.top=e.clientY+'px';
 
+    // 重置显示的内容
+    obj = document.querySelector(".leftmenuLayout>.item[data-i]")
+    obj.dataset["i"] = 1
+    obj.querySelector("img").src = "./static/svg/Layout_del.svg"
+    obj.querySelector("span").innerHTML = "删除"
+
     //改变自定义菜单的高宽，让它显示出来
     menu.style.height='auto';
     menu.style.width='auto';
@@ -157,6 +168,7 @@ function layoutCheck(e,obj,type){
                         showLeftLayoutMenuElement.remove()
                         if(showLeftLayoutMenuElement.getAttribute("type") == "menu select"){
                             // 被选择的元素
+                            // 删除页面的显示内容
                         }
                     }
                     showLeftLayoutMenuElement = null
@@ -169,6 +181,10 @@ function layoutCheck(e,obj,type){
             // 关闭菜单
             document.querySelector('.leftmenuLayout').style.height = 0;
             document.querySelector('.leftmenuLayout').style.width = 0;
+            obj = document.querySelector(".leftmenuLayout>.item[data-i]")
+            obj.dataset["i"] = 1
+            obj.querySelector("img").src = "./static/svg/Layout_del.svg"
+            obj.querySelector("span").innerHTML = "删除"
             break
     }
 

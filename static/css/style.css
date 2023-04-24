@@ -140,4 +140,32 @@ body::-webkit-scrollbar{
     border-radius: 7px;
 }
 
+.text_about{
+    width: 250px;
+    height: 130px;
+    background-color: rgba(0,0,0,.5);
+    backdrop-filter: blur(2.5px);
+    position: absolute;
+    top: calc(50% - 125px);
+    left: calc(50% - 100px);
+    color: white;
+    padding: 3px 7px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
+#about_close{
+    position:absolute;
+    top: 3px;
+    right: 13px;
+}
+
+.about_back{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: -50;
+    position: relative;
+}

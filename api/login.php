@@ -6,11 +6,11 @@ class retMsgClass{
     var $name;
     var $icon;
 }
-// $t = new retMsgClass();
-// $t->login = "false";
-// $t->name = "狐小九Little_Jiu";
-// $t->icon = "./static/img/testicon.jpg";
-// die(json_encode($t,JSON_UNESCAPED_UNICODE));
+$t = new retMsgClass();
+$t->login = "false";
+$t->name = "狐小九Little_Jiu";
+$t->icon = "./static/img/testicon.jpg";
+die(json_encode($t,JSON_UNESCAPED_UNICODE));
 
 // 校验用户cookie
 $token = $_COOKIE["u_token"];

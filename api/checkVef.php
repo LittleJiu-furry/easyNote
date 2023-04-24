@@ -21,9 +21,9 @@ if($sql->connect_error){
 // 处理验证码，转base64并取md5
 $vefcode = dealVefcode($vefcode);
 // 查询
-$code_id = $sql->query("select `code` from `" . $pre .  "user` where `em` = '" . base64_encode($em) . "';")->fetch_assoc();
-$code_info = $sql->query("select * from `". $pre . "code` where `code_id` = '' and `code_for` = 'REG_" . base64_encode($em) ."';")->fetch_assoc();
-if($vefcode == $code_info["code_content"] and time() - $code_info["code_st"] > 300){
+$code_id = $sql->query("select `code` from `" . $pre .  "user` where `uid` = '" . $_COOKIE["user_uid"] . "';")->fetch_assoc();
+$code_info = $sql->query("select * from `". $pre . "code` where `code_id` = '" . $code_id["code"] . "' and `code_for` = 'REG_" . base64_encode($em) ."';")->fetch_assoc();
+if($vefcode == $code_info["code_content"] and time() - $code_info["code_st"] < 300){
     die(retMsgFunction(0,"验证成功"));
 }
 else{

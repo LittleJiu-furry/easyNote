@@ -66,6 +66,17 @@
     height: 85%;
 }
 
+
+#editordiv:empty::before{
+    content: "这是一个支持markdown的文本编辑器，请尽情记录~";
+    color: rgba(0,0,0,.55);
+}
+
+#editordiv:focus::before{
+    content: none;
+    color: initial;
+}
+
 #editordiv::-webkit-scrollbar{
     width: 7px;
 }
@@ -99,5 +110,3 @@
     font-size: 5px;
     color: white;
 }
-
-

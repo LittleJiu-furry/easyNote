@@ -8,24 +8,21 @@ require("./PHPMailer.use.php");
 $emailAdd = $_GET["em"];
 $inputUser = $_GET["inputuser"];
 $VefCode = getVef();
-$emailBody = '<html>
-<body>
-    <center><h2 style="color:red">欢迎加入</h2></center>
-    <hr>
-    <p><strong><span>'.$inputUser.'</span>,你好</strong></p>
-    <br>
-    <p>欢迎注册本站</p>
-    <p>你的验证代码为：<strong><span>'.$VefCode.'</span></strong></p>
-    <br>
-    <br>
-    <span>你会收到本邮件，是因为有人使用了你的邮箱注册了 <span>'.$_conf["siteTitle"].'</span></span>
-    <br>
-    <span>如非你本人操作，请忽略本邮件</span>
-</body>
-</html>';
+$emailBody = '<center><h2 style="color:red">欢迎加入</h2></center>
+<hr>
+<p><strong><span>'.$inputUser.'</span>,你好</strong></p>
+<br>
+<p>欢迎注册本站</p>
+<p>你的验证代码为：<strong><span>'.$VefCode.'</span></strong></p>
+<br>
+<br>
+<span style="font-size: 3px;">你会收到本邮件，是因为有人使用了你的邮箱注册了 <span>'.$_conf["siteTitle"].'</span></span>
+<br>
+<span style="font-size: 3px;">如非你本人操作，请忽略本邮件</span>';
+
 
 $em = new emUse($_conf["SMTP_host"],$_conf["SMTP_Auth"],$_conf["SMTP_username"],$_conf["SMTP_PWD"],$_conf["SMTP_port"]);
-$em->send_mail($_conf["SMTP_fromAddress"],$_conf["SMTP_fromName"],$emailAdd,$emailBody); // 发送邮件验证
+$em->send_mail($_conf["fromAddress"],$_conf["fromName"],$emailAdd,"[no-reply] 注册验证码",$emailBody);
 
 
 function getVef(){
@@ -39,26 +36,33 @@ function getVef(){
     include_once("./conn/sql.inc.php");
     $sql = new mysqli($host,$username,$passwd,$database,$port);
     if($sql->connect_error){
-        die(); // 直接结束本脚本执行，如果无法发送，用户可以使用验证页面的重发验证码来实现重发
+        die("[连接错误]"); // 直接结束本脚本执行，如果无法发送，用户可以使用验证页面的重发验证码来实现重发
     }
     // 记录到数据库
-    saveVefCode($sql,$pre,$ret);
-    return $ret;
-}
-
-function saveVefCode(\mysqli $sql,$pre,$vef){
-    // $sql : 数据库操作游标指针
-    // $pre : 记录的数表前缀
-
     // 先记录code的信息
     $code_uuid = rand_str(10);
     $code_st = time();
     $code_for = "REG_" . base64_encode($GLOBALS["emailAdd"]);
-    $code_content = $vef;
-    $sql->query("insert into `". $pre ."code`(`code_id`,`code_content`,`code_st`,`code_for`) value('".$code_uuid."','".$code_content."','".$code_st."','".$code_for."');");
+    $code_content = md5(base64_encode($ret));
+    $sql->query(
+        "insert into ". $pre ."code (
+        code_id,
+        code_content,
+        code_st,
+        code_for
+        ) value (
+            '".$code_uuid."',
+            '".$code_content."',
+            '".$code_st."',
+            '".$code_for."'
+        );
+    ");
 
-    
+    // 更新用户表中的信息
+    $sql->query("update ".$pre."user set code = '".$code_uuid."' where uid = '".$_COOKIE["user_uid"]."';");    
+    return $ret;
 }
+
 
 function rand_str(int $length):string{
     $tempArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_";
