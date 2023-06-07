@@ -1,6 +1,6 @@
-# <span style="color:red">重要</span>
+# <span style="color:red !important">重要</span>
 
-本仓库的代码尚未完成，目前正在开发中，将会保证本年度5月前完成最基础功能，<span style="color:red"><b>目前请不要直接clone本仓库代码</b></span>，如果您clone了本仓库代码并部署上线，所有后果请您自负！
+本仓库的代码尚未完成，目前正在开发中，<span style="color:red !important"><b>目前请不要直接clone本仓库代码</b></span>，如果您clone了本仓库代码并部署上线，所有后果请您自负！
 
 # 介绍
 
