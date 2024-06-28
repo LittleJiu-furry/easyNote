@@ -2,7 +2,7 @@
 
 本仓库的代码尚未完成，目前正在开发中，<span style="color:red !important"><b>目前请不要直接clone本仓库代码</b></span>，如果您clone了本仓库代码并部署上线，所有后果请您自负！
 
-本仓库从未从未发布在处github之外的任何网站，仓库所有者也从未在github之外的任何git托管平台注册有账号，如果发现本项目出现在上述之外的任何git托管平台，请尽快联系！[2638239785@qq.com](mailto:2638239785@qq.com?subject=no%20Gitcode）
+本仓库从未从未发布在处github之外的任何网站，仓库所有者也从未在github之外的任何git托管平台注册有账号，如果发现本项目出现在上述之外的任何git托管平台，请尽快联系![2638239785@qq.com](mailto:2638239785@qq.com?subject=no%20Gitcode）
 # 介绍
 
 这是一个不依赖于任何框架，使用纯PHP开发完成的一个笔记记录系统(PHP 7)\
